@@ -90,6 +90,7 @@ async function unlikedSong(req, res) {
 }
 
 async function getPlaylist(req, res) {
+    console.log(req.body);
     let dbResult = await DB.execute(
         "SELECT * FROM playlist_table WHERE email=?",
         [req.body.email]
@@ -107,6 +108,7 @@ async function getPlaylist(req, res) {
             `SELECT * FROM song_table WHERE song_id IN (${songIdsString})`
         );
         dbResult = dbResult[0];
+        console.log(dbResult);
 
         if (dbResult.length) {
             res.json({
